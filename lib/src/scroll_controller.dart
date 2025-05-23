@@ -122,12 +122,11 @@ class SheetPrimaryScrollPosition extends ScrollPositionWithSingleContext {
     }
 
     if (sheetPosition.hasContentDimensions) {
-      if (sheetContext.initialAnimationFinished) {
-        sheetPosition.goBallistic(velocity);
-      } else {
+      if (velocity == 0 && sheetPosition.scrollController.offset > 0) {
         goIdle();
         return;
       }
+      sheetPosition.goBallistic(velocity);
     }
 
     if (velocity > 0.0 &&

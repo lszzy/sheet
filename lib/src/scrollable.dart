@@ -25,8 +25,6 @@ import 'package:sheet/src/widgets/min_interaction.dart';
 abstract class SheetContext extends ScrollContext {
   double? get initialExtent;
   SheetPosition get position;
-  bool get initialAnimationFinished;
-  set initialAnimationFinished(bool initialAnimationFinished);
 }
 
 /// A widget that transform to user drag.
@@ -327,9 +325,6 @@ class SheetState extends State<SheetScrollable>
 
   @override
   AxisDirection get axisDirection => widget.axisDirection;
-
-  @override
-  bool initialAnimationFinished = false;
 
   late SheetBehavior _configuration;
   ScrollPhysics? _physics;
@@ -790,7 +785,7 @@ class _ScrollSemantics extends SingleChildRenderObjectWidget {
     required this.allowImplicitScrolling,
     required this.semanticChildCount,
     super.child,
-  }) : assert(semanticChildCount == null || semanticChildCount >= 0);
+  })  : assert(semanticChildCount == null || semanticChildCount >= 0);
 
   final ScrollPosition position;
   final bool allowImplicitScrolling;
